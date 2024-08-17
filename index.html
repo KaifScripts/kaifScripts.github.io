@@ -589,16 +589,17 @@
                     $(".navbar-toggler").click();
                 }
             });
-        
-                document.addEventListener('DOMContentLoaded', () => {
-                    const video = document.getElementById('myVideo');
-        
-                    // Ensure video is loaded and starts playing
-                    video.addEventListener('canplay', () => {
-                        video.play().catch(error => {
-                            console.error('Autoplay failed:', error);
-                        });
-                    });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('myVideo');
+    
+    if (video) {
+        video.play().catch(error => {
+            // Autoplay might be blocked; handle the error
+            console.log('Autoplay was prevented:', error);
+        });
+    }
+});
                     // Toggle play/pause on video click
                     video.addEventListener('click', () => {
                         if (video.paused) {
